@@ -14,13 +14,13 @@ void Hbridge::init() {
 }
 
 // heat build surface
-void Hbridge::forward() {
+void Hbridge::right() {
   analogWrite(pwm1, 0);    // Low
   analogWrite(pwm2, 255);  // High
 }
 
 //cool build surface
-void Hbridge::reverse() {
+void Hbridge::left() {
   analogWrite(pwm1, 255);  // High
   analogWrite(pwm2, 0);    // Low
 }
