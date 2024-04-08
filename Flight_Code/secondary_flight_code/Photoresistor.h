@@ -14,7 +14,7 @@ private:
   byte resistor;
 
 public:
-  Photoresistor(byte pin, byte resistor);
+  void Photoresistor(byte pin, byte resistor);
   float CheckValue();
 };
 

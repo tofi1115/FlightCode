@@ -1,6 +1,8 @@
 /* Secondary Flight Code */
 
 # include "Hbridge.h"
+# include "Photoresistor.h"
+# include "Heater.h"
 
   // Pin Constants
       // potentially change to data type byte if this doesn't work
@@ -11,6 +13,7 @@
   int dig4 = ;
   byte An0 = ;
   byte An1 = ;
+
   int Photoresistor_Resistance = ;
   int DelayStart= 12000 ;
 
@@ -33,6 +36,7 @@ void setup() {
 }
 
 void loop() {
+
   RightBrightness = RightPhotoresistor.CheckValue();
   LeftBrightness=LeftPhotoresistor.CheckValue(); 
 
@@ -44,7 +48,23 @@ else if (RightBrighrtness-LeftBrightness<-MaxDifference){ //Move Right
   motor1.backward();
   motor2.forward()
 }
-delay(500);
+Heater.On();
+delay(100);
+  
+  RightBrightness = RightPhotoresistor.CheckValue();
+  LeftBrightness=LeftPhotoresistor.CheckValue(); 
+
+if (LeftBrightness-RightBrightness>MaxDifference){ // Move Left
+  motor1.forward();
+  motor2.backward();
+}
+else if (RightBrighrtness-LeftBrightness<-MaxDifference){ //Move Right
+  motor1.backward();
+  motor2.forward()
+}
+Heater.Off();
+delay(100);
+
 
 
 }
