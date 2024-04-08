@@ -18,7 +18,7 @@
   float LeftBrightness;
   float RightRatio;
   float LeftRatio;
-  float MinValue; //minimum triggering value
+  float MaxDifference; //maximum differebnce between brightnesses
 
   Photoresistor RightPhotoresistor(An0, Photoresistor_Resistance);
   Photoresistor LeftPhotoresistor(An1, Photoresistor_Resistance);
@@ -33,13 +33,18 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   RightBrightness = RightPhotoresistor.CheckValue();
   LeftBrightness=LeftPhotoresistor.CheckValue(); 
 
-  RightRatio=RightBrightness/(RightBrightness/LeftBrightness);
-  LeftRatio=LeftBrightness/(RightBrightness/LeftBrightness);
+if (LeftBrightness-RightBrightness>MaxDifference){ // Move Left
+  motor1.forward();
+  motor2.backward();
+}
+else if (RightBrighrtness-LeftBrightness<-MaxDifference){ //Move Right
+  motor1.backward();
+  motor2.forward()
+}
+delay(500);
 
-  if ()
 
 }

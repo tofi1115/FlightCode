@@ -16,8 +16,8 @@ private:
 public:
   Hbridge(byte pwm1, byte pwm2);
   void init();
-  void right();
-  void left();
+  void forward();
+  void backward();
   void off();
 };
 
