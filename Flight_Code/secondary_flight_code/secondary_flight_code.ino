@@ -48,23 +48,6 @@ else if (RightBrighrtness-LeftBrightness<-MaxDifference){ //Move Right
   motor1.backward();
   motor2.forward()
 }
-Heater.On();
 delay(100);
-  
-  RightBrightness = RightPhotoresistor.CheckValue();
-  LeftBrightness=LeftPhotoresistor.CheckValue(); 
-
-if (LeftBrightness-RightBrightness>MaxDifference){ // Move Left
-  motor1.forward();
-  motor2.backward();
-}
-else if (RightBrighrtness-LeftBrightness<-MaxDifference){ //Move Right
-  motor1.backward();
-  motor2.forward()
-}
-Heater.Off();
-delay(100);
-
-
 
 }
