@@ -19,6 +19,7 @@ public:
   void forward();
   void backward();
   void off();
+  void hold();
 };
 
 #endif
