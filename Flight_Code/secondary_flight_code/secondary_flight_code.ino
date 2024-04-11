@@ -2,52 +2,67 @@
 
 # include "Hbridge.h"
 # include "Photoresistor.h"
-# include "Heater.h"
 
   // Pin Constants
       // potentially change to data type byte if this doesn't work
-      // Also maybe make a seperate constants piece at some point...
-  int dig1 = ;
-  int dig2 = ;
-  int dig3 = ;
-  int dig4 = ;
-  byte An0 = ;
-  byte An1 = ;
 
-  int Photoresistor_Resistance = ;
-  int DelayStart= 12000 ;
+      //Right Motor
+  int rightMotor_pin1 = 6 ;
+  int rightMotor_pin2 = 9 ;
+
+      //Left Motor
+  int leftMotor_pin1 = 3 ;
+  int leftMotor_pin2 = 5 ;
+
+  byte rightPhoto_pin = A1;
+  byte leftPhoto_pin = A0;
+
+  int Photoresistor_Resistance = 50; // Used for calculating actual Photoresistor value
+  int DelayStart= 120000;
 
   float RightBrightness;
   float LeftBrightness;
-  float RightRatio;
-  float LeftRatio;
-  float MaxDifference; //maximum differebnce between brightnesses
+  float RightOverLeftRatio;
+  float fudgeFactor = .1;
 
-  Photoresistor RightPhotoresistor(An0, Photoresistor_Resistance);
-  Photoresistor LeftPhotoresistor(An1, Photoresistor_Resistance);
+  Hbridge rightMotor(rightMotor_pin1, rightMotor_pin2);
+  Hbridge leftMotor(leftMotor_pin1, leftMotor_pin2);
 
-  Hbridge motor1();
-  Hbridge motor2();
+  Photoresistor leftPhoto(leftPhoto_pin, Photoresistor_Resistance);
+  Photoresistor rightPhoto(rightPhoto_pin,Photoresistor_Resistance);
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  delay(DelayStart);
 }
 
 void loop() {
 
-  RightBrightness = RightPhotoresistor.CheckValue();
-  LeftBrightness=LeftPhotoresistor.CheckValue(); 
+RightBrightness= rightPhoto.CheckValue()+1;
+LeftBrightness=leftPhoto.CheckValue()+1;
 
-if (LeftBrightness-RightBrightness>MaxDifference){ // Move Left
-  motor1.forward();
-  motor2.backward();
+RightOverLeftRatio=RightBrightness/LeftBrightness;
+if (RightBrightness>100){
+if (RightOverLeftRatio>1+fudgeFactor) {
+  //Motors to turn Right
+  Serial.print("Right");
+  rightMotor.forward();
+  leftMotor.backward();
+
+} else if(RightOverLeftRatio<1-fudgeFactor) {
+  //Motors to turn Left
+  Serial.print("Left");
+  rightMotor.backward();
+  leftMotor.forward();
+
+} else {
+  rightMotor.hold();
+  leftMotor.hold();
 }
-else if (RightBrighrtness-LeftBrightness<-MaxDifference){ //Move Right
-  motor1.backward();
-  motor2.forward()
+} else {
+  rightMotor.forward();
+  leftMotor.backward();
 }
-delay(100);
+
 
 }
