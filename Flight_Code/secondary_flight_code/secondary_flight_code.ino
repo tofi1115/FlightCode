@@ -42,7 +42,7 @@ void setup() {
   leftMotor.off();
 
   Serial.begin(9600);
-  //delay(DelayStart);
+  delay(DelayStart);
 
 }
 
