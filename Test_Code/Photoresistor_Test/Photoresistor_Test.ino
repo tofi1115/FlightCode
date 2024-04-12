@@ -1,8 +1,8 @@
 /* Photoresistor Hardware Test Code */
 
   //Photoresistor Input Values
-  int photoresistor1 = A0;
-  int photoresistor2 = A1;
+  int photoresistor1 = A0; //Left
+  int photoresistor2 = A1; //Right
 
   //Values of Photoresistors
   int value1;
@@ -26,9 +26,9 @@ void loop() {
   value2 = analogRead(photoresistor2);
 
   //Print results to Serial Monitor
-  Serial.print(value1);
+  Serial.print(value1); 
   Serial.print("  ");
-  Serial.print(value2);
+  Serial.print(value2); 
   Serial.println("  ");
 
 }

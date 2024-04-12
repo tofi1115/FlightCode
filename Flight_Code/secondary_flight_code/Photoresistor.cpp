@@ -12,6 +12,6 @@ void Photoresistor::init() {
 }
 
 int Photoresistor::CheckValue(){
-  float reading = analogeRead(pin);
+  float reading = analogRead(pin);
   return reading;
 }

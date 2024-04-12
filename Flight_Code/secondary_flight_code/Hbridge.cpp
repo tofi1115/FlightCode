@@ -30,3 +30,7 @@ void Hbridge::off() {
   analogWrite(pwm1, 0);  // Low
   analogWrite(pwm2, 0);  // Low
 }
+void Hbridge::hold(){
+  analogWrite(pwm1, 255);  // Low
+  analogWrite(pwm2, 255);
+}
