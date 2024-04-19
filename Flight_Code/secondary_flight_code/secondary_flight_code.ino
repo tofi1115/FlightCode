@@ -39,12 +39,12 @@
   uint32_t timeStamp = 0;
 
   //Define Motors
-  Hbridge rightMotor(rightMotor_pin1, rightMotor_pin2);
-  Hbridge leftMotor(leftMotor_pin1, leftMotor_pin2);
+  Hbridge const rightMotor(rightMotor_pin1, rightMotor_pin2);
+  Hbridge const leftMotor(leftMotor_pin1, leftMotor_pin2);
   
   //Define Photoresistors
-  Photoresistor leftPhoto(leftPhoto_pin, Photoresistor_Resistance);
-  Photoresistor rightPhoto(rightPhoto_pin,Photoresistor_Resistance);
+  Photoresistor const leftPhoto(leftPhoto_pin, Photoresistor_Resistance);
+  Photoresistor const rightPhoto(rightPhoto_pin,Photoresistor_Resistance);
 
 void setup() {
   // put your setup code here, to run once:
