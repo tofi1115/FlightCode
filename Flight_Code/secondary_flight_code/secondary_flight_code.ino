@@ -62,14 +62,14 @@ void setup() {
     leftMotor.backward();
     delay(loopDelay);
 
-    if (MinBrightness > (((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
+    if (MinBrightness > (((rightPhoto.CheckValue())+leftPhoto.CheckValue())/2)){
 
-      MinBrightness = ((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
+      MinBrightness = ((rightPhoto.CheckValue())+leftPhoto.CheckValue())/2;
 
     }
-    if (MaxBrightness < (((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
+    if (MaxBrightness < (((rightPhoto.CheckValue())+leftPhoto.CheckValue())/2)){
 
-      MaxBrightness = ((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
+      MaxBrightness = ((rightPhoto.CheckValue())+leftPhoto.CheckValue())/2;
     }
   }
 
@@ -78,8 +78,8 @@ void setup() {
 
 void loop() {
 
-  RightBrightness= rightPhoto.CheckValue()+1;
-  LeftBrightness=leftPhoto.CheckValue()+1;
+  RightBrightness= rightPhoto.CheckValue();
+  LeftBrightness=leftPhoto.CheckValue();
 
   RightOverLeftRatio=RightBrightness/LeftBrightness;
 
