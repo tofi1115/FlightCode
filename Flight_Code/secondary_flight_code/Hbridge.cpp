@@ -11,6 +11,7 @@ Hbridge::Hbridge(byte pwm1, byte pwm2) {
 void Hbridge::init() {
   pinMode(pwm1, OUTPUT);
   pinMode(pwm2, OUTPUT);
+  off();
 }
 
 // heat build surface
