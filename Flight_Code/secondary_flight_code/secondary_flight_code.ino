@@ -28,7 +28,7 @@
   float RightBrightness; //Brightness read by Right Photoresistor
   float LeftBrightness;  //Brightness read by left Photoresistor
   float RightOverLeftRatio; //Ratio of right brightness over left
-  float const fudgeFactor = .2; //
+  float const tolerance = .2; //
   int const loopDelay = 15;
 
   //Variable Through Flight
@@ -84,12 +84,12 @@ void loop() {
   RightOverLeftRatio=RightBrightness/LeftBrightness;
 
   if (RightBrightness>MinBrightness){
-    if (RightOverLeftRatio>1+fudgeFactor) {
+    if (RightOverLeftRatio>1+tolerance) {
       //Motors to turn Right
       rightMotor.forward();
       leftMotor.backward();
 
-    } else if(RightOverLeftRatio<1-fudgeFactor) {
+    } else if(RightOverLeftRatio<1-tolerance) {
       //Motors to turn Left
       rightMotor.backward();
       leftMotor.forward();
