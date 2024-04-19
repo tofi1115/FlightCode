@@ -98,7 +98,8 @@ void loop() {
       rightMotor.hold();
       leftMotor.hold();
     }
-    } else {
+  } 
+  else {
       rightMotor.forward();
       leftMotor.backward();
     }
