@@ -13,36 +13,59 @@
   int leftMotor_pin1 = 3 ;
   int leftMotor_pin2 = 5 ;
 
+  //LED indicating Arduino is on
+  int LED_pin = 11;
+
       //Photoresistor Pins
   byte rightPhoto_pin = A1;
   byte leftPhoto_pin = A0;
 
-  int DelayStart= 120000; //Delay before turning Motors on
+  int DelayStart= 200000; //Delay before turning Motors on
+  int TurnDelay=10000; //Delay while module turns around
   byte Photoresistor_Resistance=50; //Photoresistor associated resistance|Not used, but required for class defenitions
 
+  //Constant throughout Flight
   float RightBrightness; //Brightness read by Right Photoresistor
   float LeftBrightness;  //Brightness read by left Photoresistor
   float RightOverLeftRatio; //Ratio of right brightness over left
-  float fudgeFactor = .1; //
-  float MinBrightness = 15; //Minimum required brightness to trigger control loop
-  int loopDelay = 100;
+  float fudgeFactor = .2; //
+  int loopDelay = 15;
+
+  //Variable Through Flight
+  float MinBrightness; //Minimum required brightness to trigger control loop
 
   uint32_t timeStamp = 0;
 
+  //Define Motors
   Hbridge rightMotor(rightMotor_pin1, rightMotor_pin2);
   Hbridge leftMotor(leftMotor_pin1, leftMotor_pin2);
-
+  
+  //Define Photoresistors
   Photoresistor leftPhoto(leftPhoto_pin, Photoresistor_Resistance);
   Photoresistor rightPhoto(rightPhoto_pin,Photoresistor_Resistance);
 
 void setup() {
   // put your setup code here, to run once:
+  pinMode(LED_pin, OUTPUT);
 
   rightMotor.off();
   leftMotor.off();
 
+  digitalWrite(LED_pin, HIGH);
+
   Serial.begin(9600);
-  delay(DelayStart);
+  //delay(DelayStart);
+
+  for(int time=0; time <= TurnDelay; time+=loopDelay){
+    rightMotor.forward();
+  leftMotor.backward();
+  delay(loopDelay);
+
+  if (MinBrightness>(((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
+
+    MinBrightness=((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
+  }
+  }
 
 }
 
