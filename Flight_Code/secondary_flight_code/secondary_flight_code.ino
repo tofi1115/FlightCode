@@ -81,40 +81,40 @@ void setup() {
 
 void loop() {
 
-RightBrightness= rightPhoto.CheckValue()+1;
-LeftBrightness=leftPhoto.CheckValue()+1;
+  RightBrightness= rightPhoto.CheckValue()+1;
+  LeftBrightness=leftPhoto.CheckValue()+1;
 
-RightOverLeftRatio=RightBrightness/LeftBrightness;
+  RightOverLeftRatio=RightBrightness/LeftBrightness;
 
-if (RightBrightness>MinBrightness){
-  if (RightOverLeftRatio>1+fudgeFactor) {
-    //Motors to turn Right
-    rightMotor.forward();
-    leftMotor.backward();
+  if (RightBrightness>MinBrightness){
+    if (RightOverLeftRatio>1+fudgeFactor) {
+      //Motors to turn Right
+      rightMotor.forward();
+      leftMotor.backward();
 
-  } else if(RightOverLeftRatio<1-fudgeFactor) {
-    //Motors to turn Left
-    rightMotor.backward();
-    leftMotor.forward();
+    } else if(RightOverLeftRatio<1-fudgeFactor) {
+      //Motors to turn Left
+      rightMotor.backward();
+      leftMotor.forward();
 
-  } else {
-    rightMotor.hold();
-    leftMotor.hold();
-  }
-  } else {
-    rightMotor.forward();
-    leftMotor.backward();
-  }
-  
-  delay(loopDelay);
+    } else {
+      rightMotor.hold();
+      leftMotor.hold();
+    }
+    } else {
+      rightMotor.forward();
+      leftMotor.backward();
+    }
+    
+    delay(loopDelay);
 
-  //Log Data
-  timeStamp = millis();
-  
-  Serial.print(timeStamp);
-  Serial.print(",");
-  Serial.print(RightBrightness);
-  Serial.print(",");
-  Serial.print(LeftBrightness);
-  Serial.println();
+    //Log Data
+    timeStamp = millis();
+    
+    Serial.print(timeStamp);
+    Serial.print(",");
+    Serial.print(RightBrightness);
+    Serial.print(",");
+    Serial.print(LeftBrightness);
+    Serial.println();
 }
