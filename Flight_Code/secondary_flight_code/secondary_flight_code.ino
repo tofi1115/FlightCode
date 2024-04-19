@@ -32,7 +32,9 @@
   int loopDelay = 15;
 
   //Variable Through Flight
-  float MinBrightness; //Minimum required brightness to trigger control loop
+  float MinBrightness = 0; //Minimum required brightness found in tuning initially 0
+  float MaxBrightness = 0; //Maximum brightness found in tuning initially 0
+  float MinTriggerBrightness; //Brightness under which the module will turn to oe direction until brightness values are higher
 
   uint32_t timeStamp = 0;
 
@@ -57,16 +59,24 @@ void setup() {
   //delay(DelayStart);
 
   for(int time=0; time <= TurnDelay; time+=loopDelay){
-    rightMotor.forward();
+
+  //Spin Arround for 10 seconds  
+  rightMotor.forward();
   leftMotor.backward();
   delay(loopDelay);
 
-  if (MinBrightness>(((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
+  if (MinBrightness > (((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
 
-    MinBrightness=((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
+    MinBrightness = ((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
+
+  }
+  if (MaxBrightness < (((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
+
+    MaxBrightness = ((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
   }
   }
 
+  MinTriggerBrightness=(MinBrightness+(MaxBrightness-MinBrightness)*.2);
 }
 
 void loop() {
