@@ -20,7 +20,7 @@
   byte rightPhoto_pin = A1;
   byte leftPhoto_pin = A0;
 
-  int DelayStart= 200000; //Delay before turning Motors on
+  int DelayStart= 300000; //Delay before turning Motors on
   int TurnDelay=10000; //Delay while module turns around
   byte Photoresistor_Resistance=50; //Photoresistor associated resistance|Not used, but required for class defenitions
 
@@ -56,8 +56,9 @@ void setup() {
   digitalWrite(LED_pin, HIGH);
 
   Serial.begin(9600);
-  //delay(DelayStart);
+  delay(DelayStart);
 
+  //Auto Tuning Loop
   for(int time=0; time <= TurnDelay; time+=loopDelay){
 
   //Spin Arround for 10 seconds  
