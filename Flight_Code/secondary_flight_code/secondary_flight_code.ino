@@ -6,30 +6,30 @@
 //Constants
 
       //Right Motor
-  int rightMotor_pin1 = 6 ;
-  int rightMotor_pin2 = 9 ;
+  int const rightMotor_pin1 = 6 ;
+  int const rightMotor_pin2 = 9 ;
 
       //Left Motor
-  int leftMotor_pin1 = 3 ;
-  int leftMotor_pin2 = 5 ;
+  int const leftMotor_pin1 = 3 ;
+  int const leftMotor_pin2 = 5 ;
 
   //LED indicating Arduino is on
-  int LED_pin = 11;
+  int const LED_pin = 11;
 
       //Photoresistor Pins
-  byte rightPhoto_pin = A1;
-  byte leftPhoto_pin = A0;
+  byte const rightPhoto_pin = A1;
+  byte const leftPhoto_pin = A0;
 
   int DelayStart= 200000; //Delay before turning Motors on
   int TurnDelay=10000; //Delay while module turns around
-  byte Photoresistor_Resistance=50; //Photoresistor associated resistance|Not used, but required for class defenitions
+  byte const Photoresistor_Resistance=50; //Photoresistor associated resistance|Not used, but required for class defenitions
 
   //Constant throughout Flight
   float RightBrightness; //Brightness read by Right Photoresistor
   float LeftBrightness;  //Brightness read by left Photoresistor
   float RightOverLeftRatio; //Ratio of right brightness over left
-  float fudgeFactor = .2; //
-  int loopDelay = 15;
+  float const fudgeFactor = .2; //
+  int const loopDelay = 15;
 
   //Variable Through Flight
   float MinBrightness = 0; //Minimum required brightness found in tuning initially 0
