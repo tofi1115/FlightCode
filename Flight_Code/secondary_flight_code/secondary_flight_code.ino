@@ -21,7 +21,7 @@
   byte const leftPhoto_pin = A0;
 
   int DelayStart= 200000; //Delay before turning Motors on
-  int TurnDelay=10000; //Delay while module turns around
+  int const TurnDelay=10000; //Delay while module turns around
   byte const Photoresistor_Resistance=50; //Photoresistor associated resistance|Not used, but required for class defenitions
 
   //Constant throughout Flight
