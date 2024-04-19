@@ -60,20 +60,20 @@ void setup() {
 
   for(int time=0; time <= TurnDelay; time+=loopDelay){
 
-  //Spin Arround for 10 seconds  
-  rightMotor.forward();
-  leftMotor.backward();
-  delay(loopDelay);
+    //Spin Arround for 10 seconds  
+    rightMotor.forward();
+    leftMotor.backward();
+    delay(loopDelay);
 
-  if (MinBrightness > (((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
+    if (MinBrightness > (((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
 
-    MinBrightness = ((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
+      MinBrightness = ((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
 
-  }
-  if (MaxBrightness < (((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
+    }
+    if (MaxBrightness < (((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2)){
 
-    MaxBrightness = ((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
-  }
+      MaxBrightness = ((rightPhoto.CheckValue()+1)+leftPhoto.CheckValue()+1)/2;
+    }
   }
 
   MinTriggerBrightness=(MinBrightness+(MaxBrightness-MinBrightness)*.2);
