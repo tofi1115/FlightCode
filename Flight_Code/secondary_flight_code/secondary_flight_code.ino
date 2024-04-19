@@ -60,7 +60,8 @@ void setup() {
     //Spin Arround for 10 seconds  
     rightMotor.forward();
     leftMotor.backward();
-    delay(loopDelay);
+    while(millis()<timeStamp+loopDelay){}
+    timeStamp=millis()
 
     if (MinBrightness > (((rightPhoto.CheckValue())+leftPhoto.CheckValue())/2)){
 
