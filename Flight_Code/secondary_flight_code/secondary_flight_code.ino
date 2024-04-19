@@ -54,8 +54,8 @@ void setup() {
 
   Serial.begin(9600);
   //delay(DelayStart);
-
-  while(TurnDelay>millis()){
+  int preSpinMilis=millis();
+  while(TurnDelay+preSpinMilis>millis()){
 
     //Spin Arround for 10 seconds  
     rightMotor.forward();
