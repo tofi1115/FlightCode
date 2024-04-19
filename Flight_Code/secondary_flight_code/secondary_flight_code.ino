@@ -104,7 +104,7 @@ void loop() {
     leftMotor.backward();
   }
     
-  delay(loopDelay);
+  while(millis()<timeStamp+loopDelay){}
 
   //Log Data
   timeStamp = millis();
