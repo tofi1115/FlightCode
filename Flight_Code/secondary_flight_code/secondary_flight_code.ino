@@ -100,19 +100,19 @@ void loop() {
     }
   } 
   else {
-      rightMotor.forward();
-      leftMotor.backward();
-    }
+    rightMotor.forward();
+    leftMotor.backward();
+  }
     
-    delay(loopDelay);
+  delay(loopDelay);
 
-    //Log Data
-    timeStamp = millis();
-    
-    Serial.print(timeStamp);
-    Serial.print(",");
-    Serial.print(RightBrightness);
-    Serial.print(",");
-    Serial.print(LeftBrightness);
-    Serial.println();
+  //Log Data
+  timeStamp = millis();
+  
+  Serial.print(timeStamp);
+  Serial.print(",");
+  Serial.print(RightBrightness);
+  Serial.print(",");
+  Serial.print(LeftBrightness);
+  Serial.println();
 }
