@@ -50,9 +50,6 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(LED_pin, OUTPUT);
 
-  rightMotor.off();
-  leftMotor.off();
-
   digitalWrite(LED_pin, HIGH);
 
   Serial.begin(9600);
